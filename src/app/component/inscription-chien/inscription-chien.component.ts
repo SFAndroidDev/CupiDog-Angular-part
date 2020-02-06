@@ -54,5 +54,8 @@ export class InscriptionChienComponent implements OnInit {
     //  null, null, null, null, null, null);
   }
 
+  envoyerPhotoChien() {
+      this.inscriptionChienService.creerPhotoChien(this.chien);
+  }
 
 }

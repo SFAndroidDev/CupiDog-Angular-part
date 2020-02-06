@@ -18,5 +18,8 @@ export class InscriptionChienService {
       });
   }
 
+  creerPhotoChien(chien: Chien) {
+  }
+
 
 }

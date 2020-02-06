@@ -1,110 +1,110 @@
 <div fxLayoutAlign="center" style="margin: 4%">
 
-  <mat-card class="example-card" style="width: 60%">
+  <mat-card class="example-card" style="width: 50%"> <!--width: 50%;display:flex;-->
     <mat-card-title>
       Inscription
     </mat-card-title>
+    <mat-card-content>
+        <form #myForm="ngForm" (ngSubmit)="inscrireMaitre(); myForm.reset();">
+          <table>
+            <tr>
+              <mat-radio-group aria-label="Select an option" name="civility" [(ngModel)]="maitre.civility">
+                <mat-radio-button value="MADAME" checked="checked">MADAME</mat-radio-button>
+                <br>
+                <mat-radio-button value="MONSIEUR">MONSIEUR</mat-radio-button>
+                <br>
+                <mat-radio-button value="AUTRE">AUTRE</mat-radio-button>
+              </mat-radio-group>
+            </tr>
+            <tr>
+              <mat-form-field style="margin-top: 18px">
+                <mat-label>Prénom</mat-label>
+                <input matInput name="fName" placeholder="" [(ngModel)]="maitre.fName">
+              </mat-form-field>
+            </tr>
+            <tr>
+              <mat-form-field style="margin-top: 18px">
+                <mat-label>Nom</mat-label>
+                <input matInput name="lName" placeholder="" [(ngModel)]="maitre.lName">
+              </mat-form-field>
+            </tr>
 
-    <form #myForm="ngForm" (ngSubmit)="inscrireMaitre(); myForm.reset();">
-      <table>
-        <tr>
-          <mat-radio-group aria-label="Select an option" name="civility" [(ngModel)]="maitre.civility">
-            <mat-radio-button value="MADAME" checked="checked">MADAME</mat-radio-button>
-            <br>
-            <mat-radio-button value="MONSIEUR">MONSIEUR</mat-radio-button>
-            <br>
-            <mat-radio-button value="AUTRE">AUTRE</mat-radio-button>
-          </mat-radio-group>
-        </tr>
-        <tr>
-          <mat-form-field style="margin-top: 18px">
-            <mat-label>Prénom</mat-label>
-            <input matInput name="fName" placeholder="" [(ngModel)]="maitre.fName">
-          </mat-form-field>
-        </tr>
-        <tr>
-          <mat-form-field style="margin-top: 18px">
-            <mat-label>Nom</mat-label>
-            <input matInput name="lName" placeholder="" [(ngModel)]="maitre.lName">
-          </mat-form-field>
-        </tr>
+            <tr>
+              <mat-form-field style="margin-bottom: 12px">
+                <input matInput type="email" placeholder="Email" [formControl]="emailFormControl" [errorStateMatcher]="matcher" [(ngModel)]="maitre.email">
+                <mat-hint>Les erreurs apparaissent instantanément!</mat-hint>
+                <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                  Veuillez saisir une adresse e-mail valide
+                </mat-error>
+                <mat-error *ngIf="emailFormControl.hasError('required')" >
+                  L'adresse mail est <strong>obligatoire</strong>
+                </mat-error>
+              </mat-form-field>
+            </tr>
+            <tr>
+              <mat-form-field style="margin-top: 18px">
+                <mat-label>Mot de passe</mat-label>
+                <input matInput name="password" type="password" placeholder="" [(ngModel)]="maitre.password">
+              </mat-form-field>
+            </tr>
+            <tr>
+              <mat-form-field style="margin-top: 18px">
+                <mat-label>Occupation</mat-label>
+                <input matInput name="occupation" placeholder="" [(ngModel)]="maitre.occupation">
+              </mat-form-field>
+            </tr>
+            <tr>
+              <mat-form-field style="margin-top: 18px">
+                <mat-label>Description</mat-label>
+                <input matInput name="description" placeholder="" [(ngModel)]="maitre.description">
+              </mat-form-field>
+            </tr>
 
-        <tr>
-          <mat-form-field style="margin-bottom: 12px">
-            <input matInput type="email" placeholder="Email" [formControl]="emailFormControl" [errorStateMatcher]="matcher" [(ngModel)]="maitre.email">
-            <mat-hint>Les erreurs apparaissent instantanément!</mat-hint>
-            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-              Veuillez saisir une adresse e-mail valide
-            </mat-error>
-            <mat-error *ngIf="emailFormControl.hasError('required')" >
-              L'adresse mail est <strong>obligatoire</strong>
-            </mat-error>
-          </mat-form-field>
-        </tr>
-        <tr>
-          <mat-form-field style="margin-top: 18px">
-            <mat-label>Mot de passe</mat-label>
-            <input matInput name="password" type="password" placeholder="" [(ngModel)]="maitre.password">
-          </mat-form-field>
-        </tr>
-        <tr>
-          <mat-form-field style="margin-top: 18px">
-            <mat-label>Occupation</mat-label>
-            <input matInput name="occupation" placeholder="" [(ngModel)]="maitre.occupation">
-          </mat-form-field>
-        </tr>
-        <tr>
-          <mat-form-field style="margin-top: 18px">
-            <mat-label>Description</mat-label>
-            <input matInput name="description" placeholder="" [(ngModel)]="maitre.description">
-          </mat-form-field>
-        </tr>
-
-        <tr>
-         <mat-label>
-           Adresse
-         </mat-label>
-        </tr>
-        <tr>
-          <mat-form-field>
-            <mat-label>Numero de la rue</mat-label>
-            <input matInput name="streetNumber" placeholder="" type="number" [(ngModel)]="maitre.address.streetNumber">
-          </mat-form-field>
-        </tr>
-        <tr>
-          <mat-form-field>
-            <mat-label>Rue</mat-label>
-            <input matInput name="street" placeholder="" type="text" [(ngModel)]="maitre.address.street">
-          </mat-form-field>
-        </tr>
-        <tr>
-          <mat-form-field>
-            <mat-label>Ville</mat-label>
-            <input matInput name="city" placeholder=""  type="text" [(ngModel)]="maitre.address.city">
-          </mat-form-field>
-        </tr>
-        <tr>
-          <mat-form-field>
-            <mat-label>Code postale</mat-label>
-            <input matInput name="zipCode" placeholder="" type="number" [(ngModel)]="maitre.address.zipCode">
-          </mat-form-field>
-        </tr>
-        <tr>
-          <mat-label>
-            Type d'inscription
-          </mat-label>
-          <mat-radio-group aria-label="Select an option" name="subscriptionType" [(ngModel)]="maitre.subscriptionType">
-            <mat-radio-button value="PREMIUM" checked="checked">Premium</mat-radio-button>
-            <br>
-            <mat-radio-button value="FREE">Free</mat-radio-button>
-            <br>
-          </mat-radio-group>
-        </tr>
-        <tr>
-          <button type="submit" mat-raised-button color="primary" style="margin-top: 24px" [disabled]="myForm.invalid">Envoyer</button>
-        </tr>
-      </table>
-    </form>
-
+            <tr>
+             <mat-label>
+               Adresse
+             </mat-label>
+            </tr>
+            <tr>
+              <mat-form-field>
+                <mat-label>Numero de la rue</mat-label>
+                <input matInput name="streetNumber" placeholder="" type="number" [(ngModel)]="maitre.address.streetNumber">
+              </mat-form-field>
+            </tr>
+            <tr>
+              <mat-form-field>
+                <mat-label>Rue</mat-label>
+                <input matInput name="street" placeholder="" type="text" [(ngModel)]="maitre.address.street">
+              </mat-form-field>
+            </tr>
+            <tr>
+              <mat-form-field>
+                <mat-label>Ville</mat-label>
+                <input matInput name="city" placeholder=""  type="text" [(ngModel)]="maitre.address.city">
+              </mat-form-field>
+            </tr>
+            <tr>
+              <mat-form-field>
+                <mat-label>Code postale</mat-label>
+                <input matInput name="zipCode" placeholder="" type="number" [(ngModel)]="maitre.address.zipCode">
+              </mat-form-field>
+            </tr>
+            <tr>
+              <mat-label>
+                Type d'inscription
+              </mat-label>
+              <mat-radio-group aria-label="Select an option" name="subscriptionType" [(ngModel)]="maitre.subscriptionType">
+                <mat-radio-button value="PREMIUM" checked="checked">Premium</mat-radio-button>
+                <br>
+                <mat-radio-button value="FREE">Free</mat-radio-button>
+                <br>
+              </mat-radio-group>
+            </tr>
+            <tr>
+              <button type="submit" mat-raised-button color="primary" style="margin-top: 24px" [disabled]="myForm.invalid">Envoyer</button>
+            </tr>
+          </table>
+        </form>
+    </mat-card-content>
   </mat-card>
 </div>

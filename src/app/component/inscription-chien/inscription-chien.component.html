@@ -1,10 +1,10 @@
 <div fxLayoutAlign="center" style="margin: 4%">
 
-  <mat-card style="width: 60%">
-    <mat-card-title>
+  <mat-card style="width: 50%;display:flex;">
+    <mat-card-title style="justify-content:top-left">
       Inscrire un chien
     </mat-card-title>
-
+    <mat-card-content>
     <form #myForm="ngForm" (ngSubmit)="inscrireChien(); myForm.reset();">
       <table>
         <tr>
@@ -52,7 +52,7 @@
           <mat-checkbox name="likingDogs" [(ngModel)]="chien.likingDogs">Sociable avec chiens</mat-checkbox><br>
           <mat-checkbox name="likingChildren" [(ngModel)]="chien.likingChildren">Sociable avec enfants</mat-checkbox><br>
         </tr>
-        <tr>
+        <!--<tr>
           <div class="div-img">
             <td>
               Choisir une photo
@@ -62,16 +62,43 @@
               <button>Charger la photo</button>
             </td>
           </div>
-        </tr>
+        </tr>-->
         <tr>
           <button type="submit" name="envoyer" mat-raised-button color="primary" [disabled]="myForm.invalid">Envoyer</button>
         </tr>
       </table>
     </form>
+  </mat-card-content>
   </mat-card>
+
+  <mat-card style="width: 50%;display:flex;">
+    <mat-card-title>
+      Upload d'une photo
+    </mat-card-title>
+    <mat-card-content>
+      <form> <!--TODO preciser les actions sur le formulaire-->
+        <table>
+          <tr>
+            <div class="div-img">
+              <td>
+                Choisir une photo
+                <input type="file" name="profilePhoto" [(ngModel)]="chien.profilePhoto" (change)="onFileSelected($event)">
+              </td>
+            </div>
+          </tr>
+          <tr>
+            <button type="submit" name="envoyerPhoto" mat-raised-button color="primary" [disabled]="myForm.invalid">Envoyer Photo</button>
+          </tr>
+        </table>
+
+      </form>
+
+    </mat-card-content>
+  </mat-card>
+
 </div>
 
-<div>
+
 
 
 
