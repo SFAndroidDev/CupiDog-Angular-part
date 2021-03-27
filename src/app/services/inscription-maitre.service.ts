@@ -8,7 +8,7 @@ import {Maitre} from '../classes/maitre';
 })
 export class InscriptionMaitreService {
 
-  URL = `http://localhost:8181/dogowner/`;
+  URL = `http://localhost:8181/owners/`;
   maitre: Maitre;
   constructor(private http: HttpClient) { }
 
